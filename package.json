@@ -1,0 +1,88 @@
+{
+  "author": {
+    "email": "gajus@gajus.com",
+    "name": "Gajus Kuizinas",
+    "url": "http://gajus.com"
+  },
+  "ava": {
+    "babel": {
+      "compileAsTests": [
+        "test/helpers/**/*"
+      ]
+    },
+    "files": [
+      "test/normalize-id/**/*"
+    ],
+    "require": [
+      "@babel/register"
+    ]
+  },
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "normalize-url": "^5.0.0",
+    "parse-url": "^5.0.1",
+    "transliteration": "^2.1.8",
+    "url-regex": "^5.0.0"
+  },
+  "description": "Destructive foreign ID normalization.",
+  "devDependencies": {
+    "@ava/babel": "^1.0.0",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/plugin-transform-flow-strip-types": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.8.3",
+    "ava": "^3.2.0",
+    "babel-plugin-istanbul": "^6.0.0",
+    "coveralls": "^3.0.9",
+    "eslint": "^6.8.0",
+    "eslint-config-canonical": "^18.1.1",
+    "flow-bin": "^0.117.0",
+    "flow-copy-source": "^2.0.9",
+    "husky": "^4.2.1",
+    "nock": "^11.7.2",
+    "nyc": "^15.0.0",
+    "semantic-release": "^17.0.2",
+    "sinon": "^8.1.1"
+  },
+  "engines": {
+    "node": ">=10.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run test"
+    }
+  },
+  "keywords": [
+    "normalize",
+    "id",
+    "identifier"
+  ],
+  "main": "./dist/index.js",
+  "name": "normalize-id",
+  "nyc": {
+    "include": [
+      "src/**/*.js"
+    ],
+    "instrument": false,
+    "reporter": [
+      "text-lcov"
+    ],
+    "require": [
+      "@babel/register"
+    ],
+    "sourceMap": false
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:gajus/normalize-id.git"
+  },
+  "scripts": {
+    "build": "rm -fr ./dist && NODE_ENV=production babel ./src --out-dir ./dist --copy-files --source-maps && flow-copy-source src dist",
+    "dev": "NODE_ENV=production babel ./src --out-dir ./dist --copy-files --source-maps --watch",
+    "lint": "eslint ./src ./test && flow",
+    "test": "NODE_ENV=test ava --serial --verbose"
+  },
+  "version": "1.0.0"
+}
